@@ -1,25 +1,141 @@
-# MIxS-ng
+# MIxS as RDF
 Next generation MIxS -- “Minimum Information about any (X) Sequence” (MIxS) specification
 
 # Purpose
 
-Encode the MIxS Information Model in JSON Schema to better support extending the standard and creating specific profiles for specific use cases.
+Encode the MIxS Information Model as RDF, to better support extending the standard and creating specific profiles for specific use cases.
 
-# Validate
+# Reuse and citation of content on this repository
 
-Validate MIxS or any extension on the command line with e.g.
+The MIxS standards and the content of this repo are freely available under the `Creative Commons 0 (open source) <https://creativecommons.org/share-your-work/public-domain/cc0/>`_ agreement. 
+
+
+## Cite the standard
+
+If you use any of the MIxS standards, please site [this paper] (https://www.nature.com/articles/nbt.1823):
+
+DOI: https://doi.org/10.1038/nbt.1823
+
+RIS format:
 
 ```
- docker run --rm --name ajv -v $(PWD):/ajv renzok/ajv -s mixs-schema.json -d mixs.json
+TY  - JOUR
+AU  - Yilmaz, Pelin
+AU  - Kottmann, Renzo
+AU  - Field, Dawn
+AU  - Knight, Rob
+AU  - Cole, James R
+AU  - Amaral-Zettler, Linda
+AU  - Gilbert, Jack A
+AU  - Karsch-Mizrachi, Ilene
+AU  - Johnston, Anjanette
+AU  - Cochrane, Guy
+AU  - Vaughan, Robert
+AU  - Hunter, Christopher
+AU  - Park, Joonhong
+AU  - Morrison, Norman
+AU  - Rocca-Serra, Philippe
+AU  - Sterk, Peter
+AU  - Arumugam, Manimozhiyan
+AU  - Bailey, Mark
+AU  - Baumgartner, Laura
+AU  - Birren, Bruce W
+AU  - Blaser, Martin J
+AU  - Bonazzi, Vivien
+AU  - Booth, Tim
+AU  - Bork, Peer
+AU  - Bushman, Frederic D
+AU  - Buttigieg, Pier Luigi
+AU  - Chain, Patrick S G
+AU  - Charlson, Emily
+AU  - Costello, Elizabeth K
+AU  - Huot-Creasy, Heather
+AU  - Dawyndt, Peter
+AU  - DeSantis, Todd
+AU  - Fierer, Noah
+AU  - Fuhrman, Jed A
+AU  - Gallery, Rachel E
+AU  - Gevers, Dirk
+AU  - Gibbs, Richard A
+AU  - Gil, Inigo San
+AU  - Gonzalez, Antonio
+AU  - Gordon, Jeffrey I
+AU  - Guralnick, Robert
+AU  - Hankeln, Wolfgang
+AU  - Highlander, Sarah
+AU  - Hugenholtz, Philip
+AU  - Jansson, Janet
+AU  - Kau, Andrew L
+AU  - Kelley, Scott T
+AU  - Kennedy, Jerry
+AU  - Knights, Dan
+AU  - Koren, Omry
+AU  - Kuczynski, Justin
+AU  - Kyrpides, Nikos
+AU  - Larsen, Robert
+AU  - Lauber, Christian L
+AU  - Legg, Teresa
+AU  - Ley, Ruth E
+AU  - Lozupone, Catherine A
+AU  - Ludwig, Wolfgang
+AU  - Lyons, Donna
+AU  - Maguire, Eamonn
+AU  - Methé, Barbara A
+AU  - Meyer, Folker
+AU  - Muegge, Brian
+AU  - Nakielny, Sara
+AU  - Nelson, Karen E
+AU  - Nemergut, Diana
+AU  - Neufeld, Josh D
+AU  - Newbold, Lindsay K
+AU  - Oliver, Anna E
+AU  - Pace, Norman R
+AU  - Palanisamy, Giriprakash
+AU  - Peplies, Jörg
+AU  - Petrosino, Joseph
+AU  - Proctor, Lita
+AU  - Pruesse, Elmar
+AU  - Quast, Christian
+AU  - Raes, Jeroen
+AU  - Ratnasingham, Sujeevan
+AU  - Ravel, Jacques
+AU  - Relman, David A
+AU  - Assunta-Sansone, Susanna
+AU  - Schloss, Patrick D
+AU  - Schriml, Lynn
+AU  - Sinha, Rohini
+AU  - Smith, Michelle I
+AU  - Sodergren, Erica
+AU  - Spor, Aymé
+AU  - Stombaugh, Jesse
+AU  - Tiedje, James M
+AU  - Ward, Doyle V
+AU  - Weinstock, George M
+AU  - Wendel, Doug
+AU  - White, Owen
+AU  - Whiteley, Andrew
+AU  - Wilke, Andreas
+AU  - Wortman, Jennifer R
+AU  - Yatsunenko, Tanya
+AU  - Glöckner, Frank Oliver
+PY  - 2011
+DA  - 2011/05/01
+TI  - Minimum information about a marker gene sequence (MIMARKS) and minimum information about any (x) sequence (MIxS) specifications
+JO  - Nature Biotechnology
+SP  - 415
+EP  - 420
+VL  - 29
+IS  - 5
+AB  - Here we present a standard developed by the Genomic Standards Consortium (GSC) for reporting marker gene sequences—the minimum information about a marker gene sequence (MIMARKS). We also introduce a system for describing the environment from which a biological sample originates. The 'environmental packages' apply to any genome sequence of known origin and can be used in combination with MIMARKS and other GSC checklists. Finally, to establish a unified standard for describing sequence data and to provide a single point of entry for the scientific community to access and learn about GSC checklists, we present the minimum information about any (x) sequence (MIxS). Adoption of MIxS will enhance our ability to analyze natural genetic diversity documented by massive DNA sequencing efforts from myriad ecosystems in our ever-changing biosphere.
+SN  - 1546-1696
+UR  - https://doi.org/10.1038/nbt.1823
+DO  - 10.1038/nbt.1823
+ID  - Yilmaz2011
+ER  - 
 ```
-where `$(PWD)` is the current MIxS working directory containing `mixs-schema.json` and `mixs.json` files.
 
-Alternatively, you can use this excellent online validation tool https://jsonschemalint.com/#/version/draft-04/markup/json
-
-# Important Notes
-
- * Currently, we use schema version `draft-6` to encode the MIxS information model. It seems to be the most widely supportet version.
- * We use [ajv: Another JSON Schema Validator](https://github.com/epoberezkin/ajv) because it seems to be the [fastet and most compliant JSON schema validator](https://survivejs.com/blog/ajv-interview/) currently available (as of 2017-08)
+## Cite this repo
+If you reuse code from this repository, please site the repository URL (https://github.com/GenomicsStandardsConsortium/mixs)
 
 
 # General Background
