@@ -135,7 +135,7 @@ ER  -
 ```
 
 ## Cite this repo
-If you reuse code from this repository, please site the repository URL (https://github.com/GenomicsStandardsConsortium/mixs)
+If you reuse code from this repository, please site the repository URL (https://github.com/GenomicsStandardsConsortium/mixs-rdf)
 
 
 # General Background
