@@ -1,0 +1,1578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Kelvin LI (J. Craig Venter Institute) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation xml:lang="en">
+            This schema is the Genomic Standards Consortium implementation of the MIGS checklist (Nat Biotech in review).
+            The latest version of the schema can always be found at : http://gensc.sf.net
+            Last update: Nov 13, 2006
+        </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="group"/>
+    <xs:element name="migs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="genome_catalogue">
+                    <xs:annotation>
+                        <xs:documentation>The information  in genome catalogue is not part of MIGS.  It is common to all entries and is required to give each genome report a unique ID and some descriptive information that links it to external information.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="gcat_identifier" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Please enter your GCat identifier if you have one. GCat identifiers are now being issued for the sake of publication. GCat identifiers can be requested from curator@ceh.ac.uk. Please see GSC documentation on requesting GCat identifiers. Look at the GSC wiki at http://gensc.sf.net.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:attribute name="group" fixed="111111"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="genome_report_title">
+                                <xs:annotation>
+                                    <xs:documentation>A brief (3-4 word) title for this genome that will appear in the genome catalogue in the absence of any other identifying data (i.e. especially important for metagenomes which will not have taxid or organism identifiers, and also important for incomplete genome reports)</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string"/>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="taxonomic_group">
+                                <xs:annotation>
+                                    <xs:documentation>One of the taxonomic groupings recognized by MIGS.  Could be expanded in the future to further refine the ability of the MIGS specification to describe particular genomes. Input: CV</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="taxonomic_group_restriction"/>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="genome_project_id" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Please enter the Genome Project Identifier for your genome  (if available from the INSDC).</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:attribute name="group" fixed="110001"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="taxid" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Taxid imported from the NCBI Genome Projects database.  If your organism does not yet have a taxid one will be created the first time you submit a molecular sequence to Genbank.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="group" fixed="111110"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="accession" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>The accession number to resolve all replicons in this entry in the INSDC databases (DDBJ/EMBL/Genbank)</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:attribute ref="group" fixed="111111"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="relevance">
+                                <xs:annotation>
+                                    <xs:documentation>A brief phrase or sentence describing the primary reason(s) this genome/metagenome was sequenced.  For example because it causes a particular disease, it is involved in a particular industrial process, or because this lineage has never been sampled before etc.  Input: free text</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="group" fixed="111111"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ncbi_organism_name" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Organism name imported from the INSDC Genome Project database.   If your entry does not have an organism name please register it with the INSDC.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="group" fixed="110000"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ncbi_status" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Status of project imported from NCBI Genome Projects database.  If your entry does not have a status please register it with NCBI.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="group" fixed="110000"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="gold_stamp" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Identifier imported from the Genomes Online Database.  If your entry does not have one, please register at GOLD.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="group" fixed="110001"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="group" fixed="111111"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Investigation">
+                    <xs:annotation>
+                        <xs:documentation>Investigation as defined by RSBI and supported by MICheck http://micheck.sf.net.  An investigation in MIGS refers to the general of a single genome or metagenomic dataset.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Study">
+                                <xs:annotation>
+                                    <xs:documentation>Study as defined by RSBI and supported by MICheck http://micheck.sf.net</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Biomaterial" maxOccurs="unbounded">
+                                            <xs:annotation>
+                                                <xs:documentation>Any study can have one or more Biomaterial elements, each Biomaterial element defines a distinct sampling event.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element ref="Biosample" maxOccurs="unbounded">
+                                                        <xs:annotation>
+                                                            <xs:documentation>One or more Biosample elements may be derived from a given Biomaterial, having optionally applied any number of assay elements to the Biomaterial using the AssayMaterial element. </xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element ref="environment"/>
+                                                    <xs:choice minOccurs="0">
+                                                        <xs:element name="sediment">
+                                                            <xs:complexType>
+                                                                <xs:sequence>
+                                                                    <xs:element name="sediment_depth">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="currents">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="incident_light">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="porosity">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="permeabillity">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="grain_size_distribution">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                </xs:sequence>
+                                                                <xs:attribute ref="group" fixed="000001"/>
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                        <xs:element name="sediment_pore_water">
+                                                            <xs:complexType>
+                                                                <xs:sequence>
+                                                                    <xs:element name="alkalinity">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="dissolved_oxygen">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="eH">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="major_cations">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="major_anions">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="nitrogen_speciation">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                    <xs:element name="phosphorus_speciation">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute ref="group" fixed="000001"/>
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                </xs:sequence>
+                                                                <xs:attribute ref="group" fixed="000001"/>
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                        <xs:element name="water_body">
+                                                            <xs:complexType>
+                                                                <xs:sequence>
+                                                                    <xs:element name="temperature" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="pH" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="salinity" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="pressure" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="chlorophyl" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="conductivity" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="light_intensity" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="DOC" type="measurementType" minOccurs="0">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>dissolved organic carbon</xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:element>
+                                                                    <xs:element name="current" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="atmospheric_data" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="density" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="alkalinity" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="dissolved_oxygen" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="POC" type="measurementType" minOccurs="0">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>particulate organic carbon</xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:element>
+                                                                    <xs:element name="phosphate" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="nitrate" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="sulphates" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="sulphides" type="measurementType" minOccurs="0"/>
+                                                                    <xs:element name="primary_production" type="measurementType" minOccurs="0"/>
+                                                                </xs:sequence>
+                                                                <xs:attribute ref="group" fixed="000001"/>
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:choice>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element ref="Assay"/>
+                                        <xs:element name="phenotype">
+                                            <xs:annotation>
+                                                <xs:documentation>The information in phenotype describes information about physical characteristics and other traits.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="propagation">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Specific to different taxa. Phage: lytic/lysogenic Plasmids: incompatibility group. Input: CV</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="propagation_restriction"/>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="encoded_traits" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Should include key traits like antibiotic resistance or xenobiotic degradation phenotypes for plasmids, converting genes for phage. This is an example of a generic definition that users can customize as any number of traits could be caputured if this field were substructred.  In the future, this could be selected from an ontology, and traits like, antibiotic resistence could be enumerated with any number of specific types of antibiotics. Input: CV</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="encoded_traits_restriction">
+                                                                    <xs:attribute ref="group" fixed="001100"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="relationship_to_oxygen">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Is this organism an aerobe, anaerobe etc</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="relationship_to_oxygen_restriction">
+                                                                    <xs:attribute ref="group" fixed="010000"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="group" fixed="111111"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="sources">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="ncbi_genome_projects_prokaryotes" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="ncbi_taxonomic_group"/>
+                                                                <xs:element name="ncbi_sequence_status"/>
+                                                                <xs:element name="ncbi_genome_size"/>
+                                                                <xs:element name="ncbi_gc_content"/>
+                                                                <xs:element name="ncbi_gram_stain"/>
+                                                                <xs:element name="ncbi_shape"/>
+                                                                <xs:element name="ncbi_arrangement"/>
+                                                                <xs:element name="ncbi_endospore"/>
+                                                                <xs:element name="ncbi_motility"/>
+                                                                <xs:element name="ncbi_salinity"/>
+                                                                <xs:element name="ncbi_oxygen"/>
+                                                                <xs:element name="ncbi_habitat"/>
+                                                                <xs:element name="ncbi_temperature_range"/>
+                                                                <xs:element name="ncbI_pathogen"/>
+                                                                <xs:element name="ncbi_disease"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="gold" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="gold_organism"/>
+                                                                <xs:element name="gold_strain"/>
+                                                                <xs:element name="gold_serovar"/>
+                                                                <xs:element name="gold_culture"/>
+                                                                <xs:element name="gold_symbiont"/>
+                                                                <xs:element name="gold_type"/>
+                                                                <xs:element name="gold_phylogeny"/>
+                                                                <xs:element name="gold_status"/>
+                                                                <xs:element name="gold_phenotype"/>
+                                                                <xs:element name="gold_relevance"/>
+                                                                <xs:element name="gold_disease"/>
+                                                                <xs:element name="gold_ecotype"/>
+                                                                <xs:element name="gold_isolatiion"/>
+                                                                <xs:element name="gold_country"/>
+                                                                <xs:element name="gold_availabiity"/>
+                                                                <xs:element name="gold_size">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>In kb</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                                <xs:element name="gold_orfs"/>
+                                                                <xs:element name="gold_data"/>
+                                                                <xs:element name="gold_institute"/>
+                                                                <xs:element name="gold_funding"/>
+                                                                <xs:element name="gold_publication"/>
+                                                                <xs:element name="gold_date"/>
+                                                                <xs:element name="gold_contact_name"/>
+                                                                <xs:element name="gold_contact_email"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute ref="group" fixed="000000"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="group" fixed="111111"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="entity_data_collection">
+        <xs:sequence>
+            <xs:element name="entity" type="xs:string"/>
+            <xs:element name="measurement" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+            <xs:element name="unit" type="xs:string"/>
+            <xs:element name="assay" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="taxonomic_group_attribute">
+        <xs:simpleContent>
+            <xs:extension base="taxonomic_group_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="nucleic_acid_extraction_attribute">
+        <xs:simpleContent>
+            <xs:extension base="nucleic_acid_extraction_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="vector_attribute">
+        <xs:simpleContent>
+            <xs:extension base="vector_restriction">
+                <xs:attribute name="group" fixed="000001"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="sampling_strategy_attribute">
+        <xs:simpleContent>
+            <xs:extension base="sampling_strategy_restriction">
+                <xs:attribute name="group" fixed="000001"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="reason_for_sequencing_attribute">
+        <xs:simpleContent>
+            <xs:extension base="reason_for_sequencing_restriction">
+                <xs:attribute name="group" fixed="000001"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="status_of_isolate_attribute">
+        <xs:simpleContent>
+            <xs:extension base="status_of_isolate_restriction">
+                <xs:attribute name="group" fixed="010000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ncbi_status_attribute">
+        <xs:simpleContent>
+            <xs:extension base="ncbi_status_restriction">
+                <xs:attribute name="group" fixed="010000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="direction_longitude_attribute">
+        <xs:simpleContent>
+            <xs:extension base="direction_longitude_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="collection_attribute">
+        <xs:simpleContent>
+            <xs:extension base="collection_restriction">
+                <xs:attribute name="group" fixed="110010"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="direction_latitude_attribute">
+        <xs:simpleContent>
+            <xs:extension base="direction_latitude_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="assembly_method_attribute">
+        <xs:simpleContent>
+            <xs:extension base="assembly_method_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="specific_host_classification_attribute">
+        <xs:simpleContent>
+            <xs:extension base="specific_host_classification_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="relationship_attribute">
+        <xs:simpleContent>
+            <xs:extension base="relationship_restriction">
+                <xs:attribute name="group" fixed="100000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="is_type_strain_attribute">
+        <xs:simpleContent>
+            <xs:extension base="is_type_strain_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="status_of_host_attribute">
+        <xs:simpleContent>
+            <xs:extension base="status_of_host_restriction"/>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="environment_attribute">
+        <xs:simpleContent>
+            <xs:extension base="environment_restriction">
+                <xs:attribute name="group" fixed="011000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="propagation_attribute">
+        <xs:simpleContent>
+            <xs:extension base="propagation_restriction">
+                <xs:attribute name="group" fixed="101100"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="trophic_level_attribute">
+        <xs:simpleContent>
+            <xs:extension base="trophic_level_restriction">
+                <xs:attribute name="group" fixed="110000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="relationship_to_oxygen_attribute">
+        <xs:simpleContent>
+            <xs:extension base="relationship_to_oxygen_restriction">
+                <xs:attribute name="group" fixed="010000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="metabolic_strategy_attribute">
+        <xs:simpleContent>
+            <xs:extension base="metabolic_strategy_restriction">
+                <xs:attribute name="group" fixed="010000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="biotic_relationship_attribute">
+        <xs:simpleContent>
+            <xs:extension base="biotic_relationship_restriction">
+                <xs:attribute name="group" fixed="010000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="spore_forming_attribute">
+        <xs:simpleContent>
+            <xs:extension base="spore_forming_restriction">
+                <xs:attribute name="group" fixed="010000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="dna_amplification_attribute">
+        <xs:simpleContent>
+            <xs:extension base="dna_amplification_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="pathogenicity_attribute">
+        <xs:simpleContent>
+            <xs:extension base="pathogenicity_restriction">
+                <xs:attribute name="group" fixed="000100"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="publication_source_attribute">
+        <xs:simpleContent>
+            <xs:extension base="publication_source_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="encoded_traits_attribute">
+        <xs:simpleContent>
+            <xs:extension base="encoded_traits_restriction">
+                <xs:attribute name="group" fixed="001100"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="habitat_type_attribute">
+        <xs:simpleContent>
+            <xs:extension base="habitat_type_restriction">
+                <xs:attribute name="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ploidy_level_attribute">
+        <xs:simpleContent>
+            <xs:extension base="ploidy_level_restriction">
+                <xs:attribute name="group" fixed="100000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="complete_genetic_lineage_attribute">
+        <xs:simpleContent>
+            <xs:extension base="complete_genetic_lineage_restriction">
+                <xs:attribute name="group" fixed="111110"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="sequencing_method_attribute">
+        <xs:simpleContent>
+            <xs:extension base="sequencing_method_restriction">
+                <xs:attribute ref="group" fixed="111111"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="finishing_strategy_attribute">
+        <xs:simpleContent>
+            <xs:extension base="finishing_strategy_restriction">
+                <xs:attribute ref="group" fixed="110000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="fold_coverage_attribute">
+        <xs:simpleContent>
+            <xs:extension base="fold_coverage_restriction">
+                <xs:attribute ref="group" fixed="110000"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:simpleType name="taxonomic_group_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Metagenome"/>
+            <xs:enumeration value="Bacteria"/>
+            <xs:enumeration value="Archaea"/>
+            <xs:enumeration value="Plasmid"/>
+            <xs:enumeration value="Eukaryote"/>
+            <xs:enumeration value="Virus"/>
+            <xs:enumeration value="Phage"/>
+            <xs:enumeration value="Mitochondrion"/>
+            <xs:enumeration value="Chloroplast"/>
+            <xs:enumeration value="Nucleomorph"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="vector_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="pUC19"/>
+            <xs:enumeration value="None"/>
+            <xs:enumeration value="pCR-BLUNT"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="status_of_isolate_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="direction_longitude_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="East"/>
+            <xs:enumeration value="West"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="direction_latitude_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="North"/>
+            <xs:enumeration value="South"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="assembly_method_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Celera"/>
+            <xs:enumeration value="Phrap"/>
+            <xs:enumeration value="TIGR ASSEMBLER"/>
+            <xs:enumeration value="Lasergene SeqMan"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="biotic_relationship_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="commensal"/>
+            <xs:enumeration value="commensal capable of causing disease"/>
+            <xs:enumeration value="free-living"/>
+            <xs:enumeration value="free-living/opportunistic"/>
+            <xs:enumeration value="pathogen"/>
+            <xs:enumeration value="symbiote"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="nucleic_acid_extraction_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="formaldihide/CTAB extraction"/>
+            <xs:enumeration value="Phenol/Chloroform"/>
+            <xs:enumeration value="Wheatcroft and Williams"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="relationship_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="is_type_strain_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="reason_for_sequencing_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="status_of_host_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="environment_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="trophic_level_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="autotroph (producer)"/>
+            <xs:enumeration value="heterotroph (consumer)"/>
+            <xs:enumeration value="saprotroph (decomposer)"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="specific_host_classification_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="environmental source"/>
+            <xs:enumeration value="laboratory host"/>
+            <xs:enumeration value="natural host"/>
+            <xs:enumeration value="natural and laboratory host"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="relationship_to_oxygen_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="aerobic"/>
+            <xs:enumeration value="anaerobic"/>
+            <xs:enumeration value="facultative aerobe"/>
+            <xs:enumeration value="facultative anaerobe"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="encoded_traits_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="antibiotic resistance"/>
+            <xs:enumeration value="converting genes"/>
+            <xs:enumeration value="DNA polymerase"/>
+            <xs:enumeration value="mercury resistance"/>
+            <xs:enumeration value="RNA polymerase"/>
+            <xs:enumeration value="Sphingolipid biosynthesis"/>
+            <xs:enumeration value="virulence"/>
+            <xs:enumeration value="xenobiotic degradation"/>
+            <xs:enumeration value="unknown"/>
+            <xs:enumeration value="phosphate permease"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="metabolic_strategy_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="spore_forming_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="pathogenicity_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="publication_source_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="habitat_type_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="air"/>
+            <xs:enumeration value="aquatic"/>
+            <xs:enumeration value="freshwater"/>
+            <xs:enumeration value="host_associated"/>
+            <xs:enumeration value="human_host_associated"/>
+            <xs:enumeration value="marine"/>
+            <xs:enumeration value="soil"/>
+            <xs:enumeration value="terrestrial"/>
+            <xs:enumeration value="unknown"/>
+            <xs:enumeration value="terrestrial_plant_associated"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="model_organism_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="dna_amplification_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="emPCR"/>
+            <xs:enumeration value="Genomiphi"/>
+            <xs:enumeration value="MDA"/>
+            <xs:enumeration value="plones"/>
+            <xs:enumeration value="pcr"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="sampling_strategy_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="enriched"/>
+            <xs:enumeration value="normalized"/>
+            <xs:enumeration value="screened"/>
+            <xs:enumeration value="plaque assay"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ploidy_level_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="triploid"/>
+            <xs:enumeration value="tetraploid"/>
+            <xs:enumeration value="allopolyploid"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="collection_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ATCC"/>
+            <xs:enumeration value="CCAP"/>
+            <xs:enumeration value="DSMZ"/>
+            <xs:enumeration value="NCTC"/>
+            <xs:enumeration value="not deposited in a public repository"/>
+            <xs:enumeration value="Plymouth Virus Collection"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="sequencing_method_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="dideoxysequencing"/>
+            <xs:enumeration value="dideoxysequencing and pyrosequencing for closure"/>
+            <xs:enumeration value="dideoxysequencing and pyrosequencing"/>
+            <xs:enumeration value="pyrosequencing"/>
+            <xs:enumeration value="polony"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="propagation_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="lytic"/>
+            <xs:enumeration value="lysogenic"/>
+            <xs:enumeration value="incompatibility group"/>
+            <xs:enumeration value="unknown"/>
+            <xs:enumeration value="asexual"/>
+            <xs:enumeration value="sexual"/>
+            <xs:enumeration value="incompatibility_group_unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="fold_coverage_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1x"/>
+            <xs:enumeration value="2x"/>
+            <xs:enumeration value="3x"/>
+            <xs:enumeration value="4x"/>
+            <xs:enumeration value="5x"/>
+            <xs:enumeration value="6x"/>
+            <xs:enumeration value="7x"/>
+            <xs:enumeration value="8x"/>
+            <xs:enumeration value="9x"/>
+            <xs:enumeration value="10x"/>
+            <xs:enumeration value="11x"/>
+            <xs:enumeration value="12x"/>
+            <xs:enumeration value="13x"/>
+            <xs:enumeration value="14x"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ncbi_status_restriction">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="complete_genetic_lineage_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="biovar 1B"/>
+            <xs:enumeration value="Group I pQBR plasmid"/>
+            <xs:enumeration value="serovar 0:8"/>
+            <xs:enumeration value="not distinct below taxid level"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="finishing_strategy_restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="complete"/>
+            <xs:enumeration value="draft"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="Biomaterial">
+        <xs:annotation>
+            <xs:documentation>Biomaterial is defined as a sampling event (unique combination of x,y,z and t (lat, long, depth/altitude, time)</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="environment">
+        <xs:annotation>
+            <xs:documentation>The information in environment describest the biotic and abiotic aspects of the environment from which a sample has been taken.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="extensions"/>
+                <xs:element name="organism">
+                    <xs:annotation>
+                        <xs:documentation>The information in organism describes the biological origin of each genome or metagenomic and provides details on how to obtain it (e.g. the isolate from a culture collection).  Everything should be specific</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="complete_genetic_lineage" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>This should provide further information about the genetic distinctness of this lineage by recording additional information   i.e  biovar, serovar, serotype, biovar, or any relevant genetic typing schemes like Group I plasmid.  Could also contain alternative taxonomic information. Input: cv in GCat</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="complete_genetic_lineage_restriction">
+                                            <xs:attribute name="group" fixed="111110"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ploidy_level">
+                                <xs:annotation>
+                                    <xs:documentation>The ploidy level of the genome (e.g. allopolyploid, haploid, diploid etc).  Has implications for the downstream study of duplicated gene and regions of the genomes (and perhaps for difficulties in assembly). Input: CV</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="ploidy_level_restriction">
+                                            <xs:attribute name="group" fixed="100000"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="number_of_replicons" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>An integer reporting the number of replicons in a nuclear genome of eukaryotes, in the genome of a bacterium or archaea or the number of segments in a segmented virus. Always applied to the haploid chromsome count of a eukaryote.  Input: integer</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:integer">
+                                            <xs:attribute name="group" fixed="110100"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="extrachromosomal_elements" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>For eukarya (optional) and bacteria (mimumum), do plasmids exist of significant phenotypic consequence (e.g. ones that determine virulence or antibiotic resistence).  Megaplasmids? Other plasmids (borrelia has 15+ plasmids)</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:integer">
+                                            <xs:attribute name="group" fixed="010000"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="estimated_size" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>The estimated size of the genome prior to sequencing.  Of particular importance in the sequencing of (eukaryotic) genome which could remain in draft form for a long or unspecified period. Input: integer, size in bp. Example: 300000  Example: 4567</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:attribute name="group" fixed="100000"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="reference_for_biomaterial" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>If the primary genome publication is not the first isolation of the biomaterial sequenced, please enter the published reference that describes the isolation of the biological material used to generate the genomic / metagenomic sequence.  Please identify this publication by PMID or DOI.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="group" fixed="010000"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="source_material_identifiers" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>MIGS aims to provide unencumbered access to all genomic materials.  All genomic regents should be deposited in at least two permanent archives and IDs should be made available here (cultures of micro-organisms: identifiers for  culture collections; specimens (e.g. eukaryara and organelles): voucher condition and location</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="collection" type="collection_restriction">
+                                            <xs:annotation>
+                                                <xs:documentation>The name of the culture collection, holder of the vocher or an institution.  Could enumerate a list of common resources, just as the American Type Culture Collection (ATCC), German Collection of Microorganisms and Cell Cultures (DMZS) etc.  Can select not deposited.  Input: CV</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="source_material_identifier">
+                                            <xs:annotation>
+                                                <xs:documentation>The unique identifier within this collection.  The  location can often be obtained from the unique ID  - e.g. ATCC10443 - but not always.  Many source materials are still not adequately made available through public reference collections (cultures and speciem collections) but should be.  There are discussions underway about a potential repository for metagenomic samples (vouchers)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="group" fixed="110110"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="group" fixed="110110"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="biotic_relationship">
+                                <xs:annotation>
+                                    <xs:documentation>Is it free-living on in a host and if the latter what type of relationship is observed (e.g. pathogen, commensal, symbiont, opportunist). Input CV</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="biotic_relationship_restriction">
+                                            <xs:attribute ref="group" fixed="010000"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="specific_host" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>If there is a host involved, please provide its taxid (or select unknown, or environmental is not actually isolated from the dead or alive host - i.e. c pathogen could be isolated from a swipe of a bench etc) and report whether it is a laboratory or natural host).  From this we can calculate any number of groupings of hosts (e.g. animal vs plant, all fish hosts, etc)</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="specific_host_taxid">
+                                            <xs:annotation>
+                                                <xs:documentation>The taxid of the specific host if it is known</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute ref="group" fixed="00110"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="specific_host_classification">
+                                            <xs:annotation>
+                                                <xs:documentation>Whether the host is unknown, a laboratory host or a natural host or both, or isolated from the environment (e.g. a bacteria isolated from a swipe of an abiotic surface or an airborne virus etc)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="specific_host_classification_restriction">
+                                                        <xs:attribute ref="group" fixed="011000"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute ref="group" fixed="000110"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="host_specificity_and_range">
+                                <xs:annotation>
+                                    <xs:documentation>If there is a host involved, what is its presumed host specificity and range.  This is a highly debatably concept and often this information is not known or has not been properly observed; for example narrow or broad host-range plasmid. Input: taxid</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="group" fixed="000100"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="health_disease_status_of_specific_host">
+                                <xs:annotation>
+                                    <xs:documentation>For viruses and phage, what was the health/disease status of that specific host (e.g. was it taken from a healthy host, a sick host, or a dead host).  Input: CV, could be taken from disease ontology</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="group" fixed="000100"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="normally_pathogenicity_or_not">
+                                <xs:annotation>
+                                    <xs:documentation>For viruses, are they usually pathogenic or can they often persist without causing overt disease? Note: Clarify</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="group" fixed="000100"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="trophic_level">
+                                <xs:annotation>
+                                    <xs:documentation>Trophic levels are the feeding position in a food chain such as primary producers, herbivore, primary carnivore, etc. Photosynthetic organisms form the first trophic level, the producers. Herbivores form the second trophic level, while carnivores form the third and even the fourth trophic levels. Microbes can be a range of producers (e.g. chemolithotroph). Input: CV</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="trophic_level_restriction">
+                                            <xs:attribute ref="group" fixed="110000"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="estimated_community_diversity">
+                                <xs:annotation>
+                                    <xs:documentation>For metagenomic samples only, the estimated community diversity and abundances of specific taxonomic groups. For example, at least 5 species, 2 dominant species, unknown etc.  Input: free text</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="group" fixed="000001"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="group" fixed="111111"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="group" fixed="111111"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Biosample">
+        <xs:annotation>
+            <xs:documentation>One or more Biosample elements may be derived from a given Biomaterial, having applied any number of assay elements to the Biomaterial using the AssayMaterial element.   AssayMaterial links derived Biosamples with their list of associated Assays.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Sequence" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="Biosample" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Biosample elements are optionally self-referential which allows for pooled sampling; i.e. a Biosample that is a collection of Biosamples.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="extensions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="MIMS"/>
+            </xs:sequence>
+            <xs:attribute ref="group" fixed="000001"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MIMS">
+        <xs:annotation>
+            <xs:documentation>Minimum Information about a Metagenomic Sequence (MIMS).  Currently applies to:: ocean water, sediment, and sediment pore water.  MIMS originated in aset of environmental parameters  developed by The International Census of Marine Microbes (http://icomm.mbl.edu/) which has been reduced into a list of core and optional parameters by Renzo Kottman based on the appearance of parameters in a survey of 62 metagenomic publications.  Builds on MIGS to form an extension for the marine metagenomics community. This should be extended in the future to other habitat types like soil etc.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="geographical_location">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element ref="geographical_point"/>
+                            <xs:element name="geographical_path">
+                                <xs:annotation>
+                                    <xs:documentation>A path is defined as a collection of points.  This element may be used when any Biomaterial is collected at a series of well-defined point locations.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="geographical_point" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="geographical_region">
+                                <xs:annotation>
+                                    <xs:documentation>A geographical_region is defined as a collection of points that forms a closed path.  This element may be used whenever any Biomaterial is collected across a broad region rather than a precise geographical point location.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="geographical_point" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="date">
+                    <xs:annotation>
+                        <xs:documentation>Year, month and day of sampling (e.g. 2006-06-30</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute ref="group" fixed="111111"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="time">
+                    <xs:annotation>
+                        <xs:documentation>The exact time of day the sample was taken (24 hour clock) - e.g. 12:30, 17:30 etc</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:time">
+                                <xs:attribute ref="group" fixed="111111"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="habitat_type">
+                    <xs:annotation>
+                        <xs:documentation>Description of the habitat in which this organism is found. Input: CV</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="habitat_type_restriction">
+                                <xs:attribute ref="group" fixed="111111"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute ref="group" fixed="000001"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="geographical_point">
+        <xs:annotation>
+            <xs:documentation>Information given here should allow the location of the original sample to be understood as a 3 dimension co-ordinate with reference to the earth.  This information consists of latitude, longitude and depth/altitude (depending on reference e.g. an ocean sample or a mountain top).</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="latitude">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="decimal">
+                                <xs:annotation>
+                                    <xs:documentation>Enter either a decimal location OR degrees, minutes, seconds, and direction.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:decimal">
+                                            <xs:attribute ref="group" fixed="111111"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:sequence>
+                                <xs:element name="degrees">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:decimal">
+                                                <xs:attribute ref="group" fixed="111111"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="minutes">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:decimal">
+                                                <xs:attribute ref="group" fixed="111111"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="seconds">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:decimal">
+                                                <xs:attribute ref="group" fixed="111111"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="direction_latitude">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="direction_latitude_restriction">
+                                                <xs:attribute ref="group" fixed="111111"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="longitude">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="decimal">
+                                <xs:annotation>
+                                    <xs:documentation>Enter either a decimal location OR degrees, minutes, seconds, and direction.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:decimal">
+                                            <xs:attribute ref="group" fixed="111111"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:sequence>
+                                <xs:element name="degrees">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:decimal">
+                                                <xs:attribute ref="group" fixed="111111"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="minutes">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:decimal">
+                                                <xs:attribute ref="group" fixed="111111"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="seconds">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:decimal">
+                                                <xs:attribute ref="group" fixed="111111"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="direction_longitude">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="direction_longitude_restriction">
+                                                <xs:attribute ref="group" fixed="111111"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:choice>
+                    <xs:element name="altitude" type="xs:decimal"/>
+                    <xs:element name="depth" type="xs:decimal"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Assay">
+        <xs:annotation>
+            <xs:documentation>Assay as defined by RSBI and supported by MICheck http://micheck.sf.net</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sample_processing">
+                    <xs:annotation>
+                        <xs:documentation>The information in sample processing describes the way a biological sample was processing after collection and sequenced.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="isolation_and_growth_conditions">
+                                <xs:annotation>
+                                    <xs:documentation>Information about the conditions required to grow the isolate (genome) in the laboratory; for a genetic element; for example information on suitable host.   This is in addition to reference for biometerial and the original genome publication.  Right now this is free text but should accept URLs, DOIs, PMIDs or SOPs and published information on this.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="group" fixed="010000"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="volume_of_sample" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>The volume of soil, water etc used in a metagenomic study. Input: integer i.e.if we select a unit</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:attribute ref="group" fixed="000001"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="sampling_strategy">
+                                <xs:annotation>
+                                    <xs:documentation>Information on the strategy behind the method of sampling (e.g. was it enriched, screened, normalized) Input CV</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="sampling_strategy_restriction">
+                                            <xs:attribute ref="group" fixed="000001"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Nucleic_acid_extraction">
+                                <xs:annotation>
+                                    <xs:documentation>How was the genetic (DNA or RNA) material extracted and prepared for library construction (e.g. MDA, emPCR, plones) Input: CV</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="nucleic_acid_extraction_method">
+                                            <xs:annotation>
+                                                <xs:documentation>How was the genetic material extracted.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="nucleic_acid_extraction_restriction">
+                                                        <xs:attribute ref="group" fixed="111111"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="dna_amplification_method">
+                                            <xs:annotation>
+                                                <xs:documentation>How was the genetic material amplified for library construction (e.g. MDA, emPCR, plones)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="dna_amplification_restriction">
+                                                        <xs:attribute ref="group" fixed="111111"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute ref="group" fixed="111111"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="library_construction" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>If the sample was cloned in to a library before sequencing report how large the total library was and how many clones were sequenced to report the metagenome) being reported. Also report the vector used.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="library_size" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Total number of clones in library. Input: integer</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute ref="group" fixed="000001"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="number_of_clones_sequenced" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Total number of clones sequenced for this project. Input: integer</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute ref="group" fixed="000001"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vector">
+                                            <xs:annotation>
+                                                <xs:documentation>The vector used.  Input: CV</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="vector_restriction">
+                                                        <xs:attribute ref="group" fixed="000001"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="insert_size" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Targeted insert size used. Input: integer</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute ref="group"/>
+                                                <xs:attribute name="min_bps" type="xs:integer"/>
+                                                <xs:attribute name="max_bps" type="xs:integer"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute ref="group" fixed="000001"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="sequencing_method" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>The name of the sequencing method used (e.g. dideoxysequencing, pryosequencing, polony, synthesis with protected dNTPs). Input: CV</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="sequencing_method_restriction">
+                                            <xs:attribute ref="group" fixed="111111"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="group" fixed="111111"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="data_processing" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>The information in data processing describes how the resulting sequence information was analyzed to produce the final genome sequence (draft, metagenomic etc) for publication.  Optionally, aspects of annotation could also be described.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="assembly" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="assembly_method">
+                                            <xs:annotation>
+                                                <xs:documentation>How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler etc). Input: CV</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="assembly_method_restriction">
+                                                        <xs:attribute ref="group" fixed="111111"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="estimated_error_rate" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Estimated error rate associated with the finished sequences and method of calculation (e.g. error rate of 1 in 1000 bp).  Input: free text</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:positiveInteger">
+                                                        <xs:attribute name="group" fixed="111111"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="finishing">
+                                <xs:annotation>
+                                    <xs:documentation>Information on the completeness of the genome project (e.g. whether draft or closed, fold coverage and the final number of contrigs).</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="finishing_strategy">
+                                            <xs:annotation>
+                                                <xs:documentation>Was the genome project intended to produce a complete or draft genome. Input: CV</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="finishing_strategy_restriction">
+                                                        <xs:attribute ref="group" fixed="110000"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="fold_coverage" type="fold_coverage_restriction">
+                                            <xs:annotation>
+                                                <xs:documentation>Coverage, the fold coverage of the sequencing expressed as 2x, 3x, 18x etc: Input: integer</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="number_of_contigs">
+                                            <xs:annotation>
+                                                <xs:documentation>How many contigs were produced for the genome.  If complete enter 1. Input: integer.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="group" fixed="110000"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute ref="group" fixed="110000"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="classification_method_for_fragment">
+                                <xs:annotation>
+                                    <xs:documentation>What, if any,  method was used to classify the fragments of the metagenome into different groups based on compositional features.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="group" fixed="000001"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="group" fixed="111111"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ontology_term">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ontology"/>
+                <xs:element name="term_name"/>
+                <xs:element name="term_uri" type="xs:anyURI" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ontology_prop">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ontology_prop" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="ontology_term"/>
+                <xs:element name="ontology_value">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="discrete"/>
+                            <xs:element name="range">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="min"/>
+                                        <xs:element name="max"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="measurementType">
+        <xs:attribute name="min" type="xs:decimal" use="optional"/>
+        <xs:attribute name="max" type="xs:decimal" use="optional"/>
+        <xs:attribute name="unit" type="xs:string" use="optional"/>
+    </xs:complexType>
+</xs:schema>
