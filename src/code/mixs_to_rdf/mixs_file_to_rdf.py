@@ -259,26 +259,59 @@ def mixs_package_directory_to_rdf (
         output_file="",
         ontology_format="turtle",
         print_output=False):
+    """ 
+    Builds an ontology (rdflib graph) from each Excel file in the specified package diretory.
+    The graph retured is a union of each of the graphs builts from each file.
     
+    Args:
+        package_directory: The directory containing the MIxS package files.
+        mixs_version: The version of MIxS package.
+        package_name: Overrides the package name provided in the package Excel spreadsheet.
+                      This argument if necessary when using a file is a csv or tsv.
+        term_type: Specifies if the MIxS terms will be represented as classes or data properties.
+                   Accepted values: 'class', 'data property'
+                   Default: 'class'
+        file_name_start: Specifies the letters the MIxS files should start with. The purpose is to avoid
+                         retrieving unwanted system files, such as .DS_Store.
+                         Default: 'M'
+        file_type: The type of file being processed. 
+                   If file type is not 'excel', a field separator/delimitor must be provided.
+                   Default: 'excel'
+        sep: Specifies the field separator/delimitor for non-Excel files.
+        base_iri: The IRI used as prefix for MIxS terms.
+        ontology_iri: The IRI used for the output ontology.
+        output_file: The file used to save the output. 
+                     If saving to different directory, include the path (e.g., '../output/mixs.ttl').
+        ontology_format: The rdf syntax of the output ontology.
+                         Accepted values: 'turtle', 'ttl', 'nt', 'ntriples', 'trix', 'json-ld', 'xml'
+                         Default: 'turtle'
+        print_output: Specifies whether to print ontology on screen.
+                      Default: False
+     Returns:
+      rdflib Graph
+    """
+
     ## get files in directory
     ## os.walk() returns tuple root, dirs, files; so use [2];
     ## see: https://www.tutorialspoint.com/python/os_walk.htm
     # next() function returns the next item in an iterator
-    pacpkage_files = next(os.walk(package_directory))[2]
-
-    pass
+    #pacpkage_files = next(os.walk(package_directory))[2]
+    package_files = next(os.walk(package_directory))[2]
 
     ##  check if beginning of file name is specified
     ## this is to avoid unwanted files such as .DS_Store
     if '' != file_name_start:
         package_files = [file_name for file_name in package_files if 'M' == file_name[0]]
     #print(package_files) # testing
-
+    
     ## build graph out of all package files
     package_graph = Graph()
-    graph.add( (URIRef(ontology_iri), RDF.type, OWL.Ontology) )
+    package_graph.add( (URIRef(ontology_iri), RDF.type, OWL.Ontology) )
     
-    for package_file in package_files:
+    for file_name in package_files:
+        package_file = os.path.abspath(f'{package_directory}{file_name}')
+        print('processing:', file_name)
+        
         package_graph +=  \
             mixs_package_file_to_rdf (
                 file_name=package_file,
@@ -332,8 +365,10 @@ def mixs_package_df_to_rdf (
 
 
 if '__main__' == __name__:
+    #print('cwd', os.path.abspath(os.curdir))
+    
     ## make sure you are in dev diretory
-    os.chdir('/Users/wdduncan/repos/mixs/mixs-rdf/src/code/rdf_etl')
+    os.chdir('/Users/wdduncan/repos/mixs/mixs-rdf/src/code/mixs_to_rdf')
     #print(os.getcwd())
 
     ## test using single package filen
@@ -343,4 +378,4 @@ if '__main__' == __name__:
 
     ## test using directory with package files
     test_directory = "../../mixs_data/mixs_v5_packages/"
-    mixs_package_directory_to_rdf(test_directory, 5, output_file='test.ttl')
+    #mixs_package_directory_to_rdf(test_directory, 5, output_file='test.ttl')
