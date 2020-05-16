@@ -9,6 +9,7 @@ def mixs_sheet_df_to_rdf (
         sheet_df,
         mixs_version,
         package_name,
+        file_name,
         term_type='class',
         base_iri='https://gensc.org/mixs#',
         ontology_iri='https://gensc.org/mixs.owl',
@@ -22,6 +23,7 @@ def mixs_sheet_df_to_rdf (
         sheet_df: The dataframe containing data from a spefice sheet.
         mixs_version: The version of MIxS package.
         package_name: The MIxS package name under which the terms will be grouped.
+        file_name: The name of MIxS package file.
         term_type: Specifies if the MIxS terms will be represented as classes or data properties.
                    Accepted values: 'class', 'data property'
                    Default: 'class'
@@ -42,8 +44,13 @@ def mixs_sheet_df_to_rdf (
         Inner function for adding annaotiaon properties to graph.
         """
         
-        ## mixs version annaotiaon property label
+        ## add mixs version annaotiaon property
+        graph.add( (mixs.mixs_version, RDF.type, OWL.AnnotationProperty) )
         graph.add( (mixs.mixs_version, RDFS.label, Literal('MIxS version')) )
+
+        ## add mixs file name annotation property
+        graph.add( (mixs.mixs_file_name, RDF.type, OWL.AnnotationProperty) )
+        graph.add( (mixs.mixs_file_name, RDFS.label, Literal('MIxS file name')) )
         
         ## column name iris as annaotiaon properties
         for col_name in col_names_dict.keys():
@@ -84,12 +91,17 @@ def mixs_sheet_df_to_rdf (
         """
         Inner funciton for creating and adding package iri to graph.
         """
-        package_iri = mixs[package_name.replace(' - ', '-').replace(' ', '')]
+        package_iri_str = \
+            package_name.replace(' - ', '-').replace(' ', '') + f'_v{mixs_version}'
+        
+        package_iri = mixs[package_iri_str]
         package_label = Literal(f'{package_name} version {mixs_version}')
     
         graph.add( (package_iri, RDF.type, owl_type) )
         graph.add( (package_iri, RDFS.label, package_label) )
         graph.add( (package_iri, sub_relation, top_package_iri) )
+        graph.add ( (package_iri, mixs.mixs_version, Literal(mixs_version)) )
+        graph.add ( (package_iri, mixs.mixs_file_name, Literal(os.path.basename(file_name))) )
 
         return package_iri
 
@@ -230,6 +242,7 @@ def mixs_package_file_to_rdf (
     graph = mixs_sheet_df_to_rdf(mixs_sheet_df,
                                 mixs_version,
                                 package_name=package_name,
+                                file_name=file_name,
                                 term_type=term_type,
                                 base_iri=base_iri,
                                 ontology_iri=ontology_iri,
