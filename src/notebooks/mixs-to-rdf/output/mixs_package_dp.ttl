@@ -1,10 +1,12 @@
-@prefix mixs: <https://gensc.org/mixs-data-property#> .
+@prefix mixs: <https://gensc.org/mixs/mixs-data-property#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://gensc.org/mixs-data-property#16s_recover> a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+<https://gensc.org/mixs.owl> a <http://www.w3.org/2002/07/owl#Ontology> .
+
+<https://gensc.org/mixs/mixs-data-property#16s_recover> a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     rdfs:label "16S recovered" ;
     rdfs:subPropertyOf mixs:MIxS-air_v5,
         mixs:MIxS-builtenvironment_v5,
@@ -48,7 +50,7 @@
     mixs:structured_comment_name "16s_recover" ;
     mixs:value_syntax "{boolean}" .
 
-<https://gensc.org/mixs-data-property#16s_recover_software> a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+<https://gensc.org/mixs/mixs-data-property#16s_recover_software> a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     rdfs:label "16S recovery software" ;
     rdfs:subPropertyOf mixs:MIxS-air_v5,
         mixs:MIxS-builtenvironment_v5,
@@ -10592,8 +10594,8 @@ mixs:host_spec_range a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     mixs:ba "X" ;
     mixs:definition "The NCBI taxonomy identifier of the specific host if it is known" ;
     mixs:eu "X" ;
-    mixs:example "NaN"^^xsd:double,
-        9606 ;
+    mixs:example 9606,
+        "NaN"^^xsd:double ;
     mixs:expected_value "NCBI taxid" ;
     mixs:item "host specificity or range" ;
     mixs:me "-" ;
@@ -10740,9 +10742,9 @@ mixs:host_taxid a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     mixs:ba "X" ;
     mixs:definition "NCBI taxon id of the host, e.g. 9606" ;
     mixs:eu "X" ;
-    mixs:example "NaN"^^xsd:double,
-        4530,
-        7955 ;
+    mixs:example 7955,
+        "NaN"^^xsd:double,
+        4530 ;
     mixs:expected_value "NCBI taxon identifier" ;
     mixs:item "host taxid" ;
     mixs:me "X" ;
@@ -11128,8 +11130,8 @@ mixs:ihmc_medication_code a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     mixs:definition "Can include multiple medication codes",
         "can include multiple medication codes" ;
     mixs:eu "X" ;
-    mixs:example "NaN"^^xsd:double,
-        810 ;
+    mixs:example 810,
+        "NaN"^^xsd:double ;
     mixs:expected_value "IHMC code" ;
     mixs:item "IHMC medication code" ;
     mixs:me "X" ;
@@ -11837,8 +11839,8 @@ mixs:lib_reads_seqd a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     mixs:ba "X" ;
     mixs:definition "Total number of clones sequenced from the library" ;
     mixs:eu "X" ;
-    mixs:example 20,
-        "NaN"^^xsd:double ;
+    mixs:example "NaN"^^xsd:double,
+        20 ;
     mixs:expected_value "number of reads sequenced" ;
     mixs:item "library reads sequenced" ;
     mixs:me "C" ;
@@ -13838,8 +13840,8 @@ mixs:num_replicons a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     mixs:ba "M" ;
     mixs:definition "Reports the number of replicons in a nuclear genome of eukaryotes, in the genome of a bacterium or archaea or the number of segments in a segmented virus. Always applied to the haploid chromosome count of a eukaryote" ;
     mixs:eu "M" ;
-    mixs:example 2,
-        "NaN"^^xsd:double ;
+    mixs:example "NaN"^^xsd:double,
+        2 ;
     mixs:expected_value "for eukaryotes and bacteria: chromosomes (haploid count); for viruses: segments" ;
     mixs:item "number of replicons" ;
     mixs:me "-" ;
@@ -15280,8 +15282,8 @@ mixs:ph a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
         "pH measurement" ;
     mixs:eu "X" ;
     mixs:example "1900-01-07T04:48:00"^^xsd:dateTime,
-        "NaN"^^xsd:double,
-        7.2e+00 ;
+        7.2e+00,
+        "NaN"^^xsd:double ;
     mixs:expected_value "measurement value" ;
     mixs:item "pH" ;
     mixs:me "C",
@@ -17099,8 +17101,8 @@ mixs:rel_air_humidity a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     mixs:definition "Partial vapor and air pressure, density of the vapor and air, or by the actual mass of the vapor and air",
         "partial vapor and air pressure, density of the vapor and air, or by the actual mass of the vapor and air" ;
     mixs:eu "M" ;
-    mixs:example "NaN"^^xsd:double,
-        8e-01 ;
+    mixs:example 8e-01,
+        "NaN"^^xsd:double ;
     mixs:expected_value "measurement value" ;
     mixs:item "relative air humidity" ;
     mixs:me "M" ;
@@ -21215,8 +21217,8 @@ mixs:specific_host a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     mixs:definition "If there is a host involved, please provide its taxid (or environmental if not actually isolated from the dead or alive host - i.e. a pathogen could be isolated from a swipe of a bench etc) and report whether it is a laboratory or natural host)",
         "If there is a host involved, please provide its taxid (or environmental if not actually isolated from the dead or alive host - i.e. pathogen could be isolated from a swipe of a bench etc) and report whether it is a laboratory or natural host). From this we can calculate any number of groupings of hosts (e.g. animal vs plant, all fish hosts, etc)" ;
     mixs:eu "X" ;
-    mixs:example 9606,
-        "NaN"^^xsd:double ;
+    mixs:example "NaN"^^xsd:double,
+        9606 ;
     mixs:expected_value "host taxid, unknown, environmental" ;
     mixs:item "specific host" ;
     mixs:me "-" ;
@@ -21945,8 +21947,8 @@ mixs:surf_humidity a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     mixs:definition "Surfaces: water activity as a function of air and material moisture",
         "surfaces: water activity as a function of air and material moisture" ;
     mixs:eu "E" ;
-    mixs:example "NaN"^^xsd:double,
-        1e-01 ;
+    mixs:example 1e-01,
+        "NaN"^^xsd:double ;
     mixs:expected_value "measurement value" ;
     mixs:item "surface humidity" ;
     mixs:me "E" ;
@@ -22066,8 +22068,8 @@ mixs:surf_moisture_ph a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     mixs:definition "pH measurement of surface",
         "ph measurement of surface" ;
     mixs:eu "E" ;
-    mixs:example 7,
-        "NaN"^^xsd:double ;
+    mixs:example "NaN"^^xsd:double,
+        7 ;
     mixs:expected_value "measurement value" ;
     mixs:item "surface moisture pH " ;
     mixs:me "E" ;
@@ -25942,8 +25944,6 @@ mixs:xylene a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
         "hydrocarbon resources-fluids/swabs" ;
     mixs:structured_comment_name "xylene" ;
     mixs:value_syntax "{float} {unit}" .
-
-<https://gensc.org/mixs.owl> a <http://www.w3.org/2002/07/owl#Ontology> .
 
 mixs:mixs_environmental_package a <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
     rdfs:label "MIxS environmental package" .
