@@ -320,6 +320,10 @@ def mixs_package_directory_to_rdf (
     ## build graph out of all package files
     package_graph = Graph()
     package_graph.add( (URIRef(ontology_iri), RDF.type, OWL.Ontology) )
+
+    ## create mixs namespaces for package graph
+    package_graph.namespace_manager.bind('mixs', base_iri) # binds mixs prefix to output
+    mixs = Namespace(base_iri) # allows you to use mixs variable for iris (e.g.: mixs.mixs_version)
     
     for file_name in package_files:
         package_file = os.path.abspath(f'{package_directory}{file_name}')
