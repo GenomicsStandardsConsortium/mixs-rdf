@@ -6,6 +6,9 @@ To run the MIxS RDF files in a local [EBI's Ontology Lookup Service](https://www
 3. Access the OLS through your browser on http://localhost:8080.
 4. After you are finished browsing, you stop the container by either using the shell script `docker-stop.sh`, or executing the command `docker container stop mixs-rdf`.
 
+### NB: The data properties version of MIxS terms does not display correctly in ols-docker. A ticket has been been submitted regarding ols-docker and data properties.  
+
+
 ## Configuration 
 
 To change the behavior of the ols-docker, edit [ols-config.yaml](ols-config.yaml) with the metadata for each ontology you want to load into OLS. Any ontology in OBO or OWL format will work. 
