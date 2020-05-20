@@ -1,13 +1,16 @@
-# Running the EMBL-EBI Ontology Lookup Service with Docker  
+# EBI's Ontology Lookup Service for MIxS
 
-To run the MIxS RDF files in a local [EBI's Ontology Lookup Service](https://www.ebi.ac.uk/ols/) web portal:
+## Running the EMBL-EBI Ontology Lookup Service with Docker  
+
+In order to view the MIxS RDF files in a local [EBI's Ontology Lookup Service](https://www.ebi.ac.uk/ols/) you must have [Docker](https://www.docker.com/) installed on your machine.  
+
+To run the EMBL-EBI OLS service:
 1. Build the Docker image by either using the shell script `docker-build.sh`, or executing the command `docker build -t mixs-rdf .`.
 2. Start the Docker container by either using the shell script `docker-run.sh`, or executing the command `docker run -dtp 8080:8080 --rm --name mixs-rdf mixs-rdf`.
 3. Access the OLS through your browser on http://localhost:8080.
 4. After you are finished browsing, you stop the container by either using the shell script `docker-stop.sh`, or executing the command `docker container stop mixs-rdf`.
 
 ### NB: The data properties version of MIxS terms does not display correctly in ols-docker. A ticket has been been submitted regarding ols-docker and data properties.  
-
 
 ## Configuration 
 
