@@ -1,0 +1,34 @@
+
+"@context":
+
+ontologies:
+
+  - id: mixs_class
+    preferredPrefix: mixs-class
+    title: MIxS to RDF as classes
+    uri: https://gensc.org/mixs.owl
+    description: "An RDF representation of MIxS terms as classes."
+    definition_property:
+      - http://purl.obolibrary.org/obo/IAO_0000115
+    synonym_property:
+      - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym
+    base_uri:
+      - https://gensc.org/mixs/mixs-class#
+    reasoner: EL
+    oboSlims: false
+    ontology_purl: file:///opt/ols/mixs_package_class.owl
+    
+  - id: mixs_data_property
+    preferredPrefix: mixs-data-property
+    title: MIxS to RDF as data properties
+    uri: https://gensc.org/mixs.owl
+    description: "An RDF representation of MIxS terms as data properties."
+    definition_property:
+      - http://purl.obolibrary.org/obo/IAO_0000115
+    synonym_property:
+      - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym
+    base_uri:
+      - https://gensc.org/mixs/mixs-data-property#
+    reasoner: EL
+    oboSlims: false
+    ontology_purl: file:///opt/ols/mixs_package_dp.owl
