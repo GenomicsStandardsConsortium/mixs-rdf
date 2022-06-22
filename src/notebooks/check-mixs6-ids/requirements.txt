@@ -1,4 +1,4 @@
-numpy==1.17.4
+numpy==1.22.0
 pandas==1.1.1
 pandasql==0.7.3
 python-dateutil==2.8.1
